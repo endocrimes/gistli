@@ -1,0 +1,13 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/endocrimes/gistli
+    steps:
+      - checkout
+      - run: make fmt vet
+      - run: make cross
+      - store_artifacts:
+          path: cross/
